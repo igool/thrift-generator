@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <property name="log.context.name" value="thrift-gen" />
+    <property name="log.charset" value="UTF-8" />
+	<property name="log.level" value="debug"/>
+    <property name="log.pattern" value="[%-5level] %date --%thread-- [%logger] %msg %n" />
+    
+    <contextName>${log.context.name}</contextName>
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="${log.charset}">
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    
+    	<appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<file>/home/webserver/logs/java/${log.context.name}/rpcserver.log</file>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/home/webserver/logs/java/${log.context.name}/thrift-gen.log.%d{yyyyMMddHH}
+			</fileNamePattern>
+		</rollingPolicy>
+		<layout>
+			<pattern>${log.pattern}</pattern>
+		</layout>
+	</appender>
+	
+    	<logger name="com.sohu.trift">
+		<level value="${log.level}" />
+		<appender-ref ref="LogFile" />
+	</logger>
+    <root>
+        <level value="${log.level}" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
