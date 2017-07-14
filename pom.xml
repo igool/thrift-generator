@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sohu.thrift</groupId>
+	<artifactId>thrift-generator</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>thrift-generator</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.18</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>-->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.paranamer</groupId>
+			<artifactId>paranamer</artifactId>
+			<version>2.8</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+			    <groupId>com.thoughtworks.paranamer</groupId>
+			    <artifactId>paranamer-maven-plugin</artifactId>
+			    <version>2.3</version>
+			    <executions>
+			        <execution>
+			            <id>run</id>  <!-- id is optional -->
+			            <configuration>
+			                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+			                <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+			            </configuration>       
+			            <phase>test-compile</phase> 
+			            <goals>
+			                <goal>generate</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>cxy</id>
+			<url>http://nexus.oa.yitopapp.com/content/repositories/cxy</url>
+		</repository>
+	</distributionManagement>
+</project>
